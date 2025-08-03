@@ -42,7 +42,7 @@ sentiment\_analysis\_for\_brand\_monitoring/
 
 # Getting Started
 
-#1. Clone the repository
+# 1. Clone the repository
 
 
 git clone https://github.com/your-username/sentiment-analysis-brand-monitoring.git
@@ -54,12 +54,12 @@ python -m venv venv
 source venv/bin/activate       # On Windows: venv\Scripts\activate
 
 
-#3. Install dependencies
+# 3. Install dependencies
 
 pip install -r requirements.txt
 
 
-### 4. Run the application
+# 4. Run the application
 
 python app.py
 
