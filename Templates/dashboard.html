@@ -1,0 +1,16 @@
+<h2>Welcome, {{ username }}</h2>
+<form action="/analyze" method="post" enctype="multipart/form-data">
+  <input type="file" name="file">
+  <input type="text" name="url" placeholder="Review page URL">
+  <select name="model">
+    <option value="random_forest">Random Forest Model</option>
+  </select>
+  <button type="submit">Analyze</button>
+</form>
+
+<h3>History</h3>
+<ul>
+  {% for item in history %}
+  <li>{{ item.timestamp }} - {{ item.model }} - {{ item.result_summary }}</li>
+  {% endfor %}
+</ul>

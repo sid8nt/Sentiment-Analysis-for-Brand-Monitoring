@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sentiment Results</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h2>Sentiment Results using {{ model }}</h2>
+  <ul>
+    <li>Positive: {{ results.Positive | default(0) }}%</li>
+    <li>Negative: {{ results.Negative | default(0) }}%</li>
+    <li>Neutral: {{ results.Neutral | default(0) }}%</li>
+  </ul>
+
+  <canvas id="barChart" width="200" height="100"></canvas>
+  <canvas id="pieChart" width="200" height="100"></canvas>
+
+  <a href="/dashboard">Back to Dashboard</a>
+
+  <script>
+    const sentimentLabels = ['Positive', 'Negative', 'Neutral'];
+    const sentimentData = [
+      {{ results.Positive | default(0) }},
+      {{ results.Negative | default(0) }},
+      {{ results.Neutral | default(0) }}
+    ];
+
+    // Bar Chart
+    const ctxBar = document.getElementById('barChart').getContext('2d');
+    new Chart(ctxBar, {
+      type: 'bar',
+      data: {
+        labels: sentimentLabels,
+        datasets: [{
+          label: 'Sentiment Percentage',
+          data: sentimentData,
+          backgroundColor: ['#4CAF50', '#F44336', '#FFC107'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: { 
+            beginAtZero: true,
+            max: 100
+          }
+        }
+      }
+    });
+
+    // Pie Chart
+    const ctxPie = document.getElementById('pieChart').getContext('2d');
+    new Chart(ctxPie, {
+      type: 'pie',
+      data: {
+        labels: sentimentLabels,
+        datasets: [{
+          data: sentimentData,
+          backgroundColor: ['#4CAF50', '#F44336', '#FFC107']
+        }]
+      }
+    });
+  </script>
+</body>
+</html>
